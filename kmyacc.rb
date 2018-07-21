@@ -7,6 +7,8 @@ class Kmyacc < Formula
   version "4.1.4"
 
   def install
+    system "sed -i -e \"s,/kmyacc,,\" src/Makefile"
+    system "sed -i -e \"s,\\\"\\$(PARLIB)\\\",\\\"\\$(PARLIB)/kmyacc\\\",\" src/Makefile"
     system "sed -i -e \"s,PREFIX = /usr/local,PREFIX = #{prefix},\" src/Makefile"
     system "make", "install"
   end
